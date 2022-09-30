@@ -1,0 +1,40 @@
+[build-system]
+requires = [
+    "setuptools >= 44.0.0",
+    "wheel",
+]
+build-backend = "setuptools.build_meta"
+
+[tool.pylint]
+    [tool.pylint.messages_control]
+    disable = [
+        "fixme",
+        "missing-docstring",
+        "too-many-line",
+    ]
+    enable = [
+        "unused-import",
+    ]
+
+    [tool.pylint.basic]
+    good-names = "a,b,c,d,dt,e,f,fq,g,h,i,id,j,k,m,n,p,q,r,s,t,tz,u,v,w,x,y,_"
+
+[tool.pydocstyle]
+ignore = [
+    "D100",
+    "D101",
+    "D102",
+    "D103",
+    "D105",
+    "D106",
+    "D107",
+    "D200",
+    "D202",
+    "D203",
+    "D205",
+    "D211",
+    "D212",
+    "D213",
+    "D301",
+    "D400",
+]
