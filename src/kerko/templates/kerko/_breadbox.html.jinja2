@@ -1,0 +1,32 @@
+{%- from "kerko/_facets.html.jinja2" import facet -%}
+
+{%- if breadbox %}
+    {%- if breadbox.keywords %}
+        {%- for scope in config.KERKO_COMPOSER.get_ordered_specs('scopes') %}
+            {{- facet(
+                    scope.breadbox_label,
+                    '',
+                    breadbox.keywords[scope.key],
+                    wrap_class='row',
+                    heading_tag='div',
+                    heading_class='col-md-4 col-xl-3 font-weight-bold break-word text-md-right text-print-left',
+                    body_class='col-md-8 col-xl-9',
+                    list_class_top='list-unstyled mb-0',
+                    remove_link_title=_("Remove the '{}' search term")
+                )
+            }}
+        {%- endfor %}
+    {%- endif %}
+    {%- if breadbox.filters %}
+        {%- for f in config.KERKO_COMPOSER.get_ordered_specs('facets') %}
+            {{ f.render(breadbox.filters[f.key], 'breadbox') }}
+        {%- endfor %}
+    {%- endif %}
+{%- elif is_searching %}
+    <div class="row">
+        <div class="col">
+            {{ _("None of your search criteria could be recognized.") }}
+            <a href="{{ url_for('kerko.search') }}">{{ _("Reset search") }}</a>.
+        </div>
+    </div>
+{%- endif %}
